@@ -13,29 +13,29 @@ If you want to mirror a repository in another location, including getting update
 1. Open Git Bash.
 2. Create a bare mirrored clone of the repository.
 
-    ```shell
-    $ git clone --mirror https://github.com/exampleuser/repository-to-mirror.git
+    ```ps1
+    git clone --mirror https://github.com/exampleuser/repository-to-mirror.git
     ```
 
 3. Set the push location to your mirror.
 
-    ```shell
-    $ cd repository-to-mirror.git
-    $ git remote set-url --push origin https://github.com/exampleuser/mirrored
+    ```ps1
+    cd repository-to-mirror.git
+    git remote set-url --push origin https://github.com/exampleuser/mirrored
     ```
 
 As with a bare clone, a mirrored clone includes all remote branches and tags, but all local references will be overwritten each time you fetch, so it will always be the same as the original repository. Setting the URL for pushes simplifies pushing to your mirror. To update your mirror, fetch updates and push.
 
-```shell
-$ git fetch -p origin
-$ git push --mirror
+```ps1
+git fetch -p origin
+git push --mirror
 ```
 
 ----
 
 After generating those mirrors you can generate a very simple powershell script to run everyday and fetching the original remote.
 
-```ps
+```ps1
 # The action that will be executed regularly: fetch the origin repo
 $action = (New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-NoProfile -WindowStyle Hidden -command "& {
 
